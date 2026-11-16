@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Case of Natalie’s Missing Activity Kit</title>
+<style>
+:root{color-scheme:light;--ink:#172338;--muted:#4e6078;--line:#d8e1ed;--blue:#0759bc}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top left,#a6cef7,transparent 66%),linear-gradient(140deg,#e5eaf9,#b4b5ec);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh}
+.tablet{max-width:1160px;margin:24px auto;background:#f3f6fc;border:9px solid #202534;border-radius:30px;overflow:hidden;box-shadow:0 24px 56px #28355244}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:#f9fbff;border-bottom:1px solid var(--line)}
+.toolbar strong{display:block;font-size:18px}.toolbar small{color:var(--muted)}
+.workspace{display:grid;grid-template-columns:178px minmax(0,1fr);min-height:540px}
+nav{display:flex;flex-direction:column;gap:6px;padding:20px 10px;background:#e7edf9;border-right:1px solid var(--line)}
+nav button{color:#25456d;text-decoration:none;padding:10px 12px;border-radius:10px;font-weight:650;font-size:14px;white-space:nowrap;background:transparent;border:0;text-align:left;cursor:pointer}
+nav button:hover,nav button:focus-visible{background:#d3e3fa}
+main{padding:24px;min-width:0}.page{background:white;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px;scroll-margin-top:12px}
+.hero{background:linear-gradient(120deg,#e2eeff,#f3edff);border-color:#d0dcf4}
+h1,h2{margin:0 0 10px;line-height:1.15}h1{font-size:clamp(28px,4vw,43px);letter-spacing:-.035em}h2{font-size:22px}
+p{margin:8px 0 0}.credit,footer{color:var(--muted);font-size:14px}
+li+li{margin-top:8px}ol{padding-left:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px}
+label{display:block;font-weight:650;margin-bottom:4px}
+select,input,.btn{font:inherit;min-height:44px;border-radius:10px}
+select,input{width:100%;background:#f8faff;color:var(--ink);border:1px solid #aabbd0;padding:8px}
+.btn{cursor:pointer;border:0;background:var(--blue);color:white;padding:9px 14px;font-weight:650}
+.ghost{background:#e0ebfc;color:#164782}.controls{margin-top:14px}
+.scroll{overflow:auto}table{width:100%;border-collapse:collapse;margin-top:10px}th,td{padding:8px;text-align:left;border-bottom:1px solid var(--line)}thead{background:#edf3fd}td select{min-width:126px}
+.result{padding:10px;border-radius:10px}.success{background:#def4e6;color:#175532}.fail{background:#fff0df;color:#713a04}
+footer{text-align:center;padding:8px 12px 14px}.home-indicator{width:92px;height:4px;background:#27364c;border-radius:9px;margin:0 auto 8px}
+dialog{width:min(470px,calc(100% - 28px));border:1px solid var(--line);border-radius:20px;padding:22px;color:var(--ink)}dialog::backdrop{background:#17233880}dialog input{margin-bottom:8px}
+:focus-visible{outline:3px solid #427ccd;outline-offset:2px}[hidden]{display:none!important}
+@media(max-width:1180px){.tablet{margin:12px}}
+@media(max-width:650px){.tablet{margin:4px;border-width:5px;border-radius:20px}.workspace{display:block}nav{flex-direction:row;overflow:auto;padding:6px;border-right:0;border-bottom:1px solid var(--line)}main{padding:10px}.page{padding:14px}.toolbar{padding:8px 10px}.toolbar .btn{font-size:13px}th,td{padding:5px}}
+nav button[aria-selected="true"]{background:#d3e3fa;color:#123d70}
+body{background:#c8d1db;color:#233e53}
+.tablet{position:relative;max-width:1860px;margin:4px auto 10px;background:#eff1f3;border:clamp(6px,1vw,13px) solid #222832;border-radius:clamp(20px,3vw,45px);box-shadow:0 0 0 3px #69737f,0 18px 40px #28355230}
+.tablet::before{content:"";position:absolute;top:0;left:50%;width:8px;height:8px;border-radius:50%;background:#10151d;transform:translate(-50%,-45%)}
+.toolbar{background:#f6f7f9;padding:clamp(12px,1.4vw,22px) clamp(12px,2vw,30px)}
+.toolbar strong{font-size:clamp(13px,1.15vw,20px);letter-spacing:.12em}
+.toolbar small{display:block;letter-spacing:.045em;color:#596e83;font-size:clamp(10px,1vw,16px)}
+.case-id{white-space:nowrap;border:1px solid #c8d3df;border-radius:10px;padding:8px 12px;font:700 clamp(10px,1vw,14px) ui-monospace,monospace}
+.welcome{--rule-offset:clamp(8px,3vw,54px);width:78%;max-width:1410px;margin:18px auto 24px;padding:clamp(20px,2vw,32px) clamp(16px,4vw,64px);text-align:center;border-radius:9px 24px 24px 9px;border-left:12px solid #d3dde7;background:linear-gradient(90deg,transparent var(--rule-offset),#eed8cb var(--rule-offset),#eed8cb calc(var(--rule-offset) + 1px),transparent calc(var(--rule-offset) + 1px)),repeating-linear-gradient(#fffdf7 0 47px,#eff1ed 47px 48px);box-shadow:0 16px 36px #2835520c}
+.welcome h1{margin:18px 0 12px;font-family:Georgia,serif;font-size:clamp(27px,3vw,54px);letter-spacing:-.02em}
+.case-icon{display:grid;place-items:center;margin:0 auto 16px;width:clamp(44px,4vw,68px);aspect-ratio:1;border:1px solid #b7c9d9;border-radius:50%;background:#e8eff5;font-size:clamp(22px,2.4vw,36px)}
+.case-tag{display:inline-block;background:#eae2d2;color:#6b4d21;border-radius:7px;padding:6px 12px;font-size:clamp(10px,.85vw,15px);font-weight:800;letter-spacing:.12em}
+.case-summary{color:#4e657c;font-size:clamp(16px,1.4vw,23px)}
+.welcome form{max-width:690px;margin:clamp(14px,1.5vw,24px) auto 0}
+.welcome label,.welcome input{font-size:clamp(16px,1.4vw,23px)}
+.welcome input{min-height:clamp(46px,4vw,70px);padding:10px 16px;background:#fff;text-align:left}
+.welcome .btn{padding:12px 22px;background:#315873;font-size:clamp(14px,1.25vw,21px);font-weight:800;text-transform:uppercase}
+footer{padding:4px 48px 16px}
+.home-indicator{width:clamp(92px,8vw,150px);height:5px;margin-bottom:12px}
+.teacher-lock{position:absolute;bottom:12px;right:clamp(9px,2vw,32px);width:44px;height:44px;border:1px solid #c8d3df;border-radius:50%;background:#e1e8ef;cursor:pointer}
+@media(max-width:650px){.tablet{margin:3px}.toolbar{gap:7px}.welcome{width:calc(100% - 20px);border-left-width:5px}.case-id{padding:5px}.teacher-lock{width:40px;height:40px;right:5px}}
+.team{overflow-wrap:anywhere}
+</style></head>
+<body>
+<div class="tablet">
+<header class="toolbar">
+  <div><strong>DETECTIVE NOTEBOOK</strong><small>THE CASE OF NATALIE’S MISSING ACTIVITY KIT</small></div>
+  <span class="case-id">CASE NK-01</span>
+</header>
+<section class="page hero welcome" id="welcome" aria-labelledby="welcome-title">
+  <span class="case-icon" aria-hidden="true">🔍</span>
+  <span class="case-tag">CONFIDENTIAL CASE FILE</span>
+  <h1 id="welcome-title">The Case of Natalie’s Missing Activity Kit</h1>
+  <p class="case-summary">A missing activity kit. A paper apple. Four suspects.</p>
+  <p class="credit">Story created by Kerlyn, Kristen and Leia</p>
+  <form id="start-form">
+    <label for="detective-name">Detective's / Team's Name</label>
+    <input id="detective-name" required maxlength="60" autocomplete="off" placeholder="e.g. The Evidence Squad">
+    <p class="controls"><button class="btn">Begin Investigation</button></p>
+  </form>
+</section>
+<div class="workspace" id="case-workspace" hidden>
+<nav role="tablist" aria-label="Case sections">
+  <button type="button" role="tab" id="tab-briefing" aria-controls="briefing" aria-selected="true" tabindex="0">Briefing</button>
+  <button type="button" role="tab" id="tab-suspects" aria-controls="suspects" aria-selected="false" tabindex="-1">Suspects</button>
+  <button type="button" role="tab" id="tab-objects" aria-controls="objects" aria-selected="false" tabindex="-1">Objects &amp; Locations</button>
+  <button type="button" role="tab" id="tab-evidence" aria-controls="evidence" aria-selected="false" tabindex="-1">Evidence</button>
+  <button type="button" role="tab" id="tab-deduction" aria-controls="deduction" aria-selected="false" tabindex="-1">Deduction Grid</button>
+  <button type="button" role="tab" id="tab-findings" aria-controls="findings" aria-selected="false" tabindex="-1">Findings</button>
+</nav>
+<main>
+  <p class="credit team" id="team-display"></p>
+  <section class="page hero" id="briefing" role="tabpanel" aria-labelledby="tab-briefing" tabindex="0">
+    <h1 id="title">The Case of Natalie’s Missing Activity Kit</h1>
+    <p class="credit">Story created by Kerlyn, Kristen and Leia</p>
+    <p>Two families went to McDonald’s for supper. While the adults waited for their orders, Natalie and two other children played in the playground. At 7.12 p.m., Natalie’s activity kit disappeared from the bench beside the play area.</p>
+    <p>Staff later found the kit intact at the cashier’s counter, where lost items are kept. Find out who moved it, which item identified that person and where they picked it up.</p>
+  </section>
+  <section class="page" id="suspects" role="tabpanel" aria-labelledby="tab-suspects" tabindex="0" hidden>
+    <h2>Suspects</h2>
+    <ul>
+      <li><strong>Sally</strong> was working on a school project while waiting for her order.</li>
+      <li><strong>Oliver</strong> was helping clear tables.</li>
+      <li><strong>Alex</strong> was helping set up decorations for a birthday party.</li>
+      <li><strong>Chloe</strong> was the manager on duty.</li>
+    </ul>
+  </section>
+  <section class="page" id="objects" role="tabpanel" aria-labelledby="tab-objects" tabindex="0" hidden>
+    <h2>Objects &amp; Locations</h2>
+    <div class="grid">
+      <div><h3>Objects</h3><ul><li>Black costume mask</li><li>Paper apple</li><li>Craft cord</li><li>Cooking pot</li></ul></div>
+      <div><h3>Locations</h3><ul><li>Dine-in table</li><li>Kitchen</li><li>Playground</li><li>Washroom entrance</li></ul></div>
+    </div>
+  </section>
+  <section class="page" id="evidence" role="tabpanel" aria-labelledby="tab-evidence" tabindex="0" hidden>
+    <h2 id="clues-title">Evidence</h2>
+    <p>At 7.12 p.m., the four suspects were in different locations and each was holding a different item from the list. Exactly one of them moved the kit.</p>
+    <ol>
+      <li>A family photo taken at 7.12 p.m. shows someone lifting the kit off the playground bench. A play panel hides the person’s face, but a paper apple with a black seed drawn on it is visible in their other hand.</li>
+      <li>At 7.12 p.m., Sally was at the dine-in table holding a black costume mask for her school project. She later left it at the cashier’s counter when she picked up her order.</li>
+      <li>An order photo shows Chloe holding a cooking pot in the kitchen at 7.12 p.m.</li>
+      <li>At 7.12 p.m., Alex was holding a roll of craft cord by the washroom entrance while a colleague brought over the party decorations.</li>
+    </ol>
+  </section>
+  <section class="page" id="deduction" role="tabpanel" aria-labelledby="tab-deduction" tabindex="0" hidden>
+    <h2 id="grid-title">Deduction Grid</h2>
+    <p>Assign one object and one location to each suspect. Use each object and location once.</p>
+    <form id="grid-form">
+      <div class="scroll">
+        <table>
+          <thead><tr><th scope="col">Suspect</th><th scope="col">Object</th><th scope="col">Location</th></tr></thead>
+          <tbody id="grid-rows"></tbody>
+        </table>
+      </div>
+      <p class="controls"><button class="btn">Check deductions</button></p>
+      <p id="grid-feedback" role="status" hidden></p>
+    </form>
+  </section>
+  <section class="page" id="findings" role="tabpanel" aria-labelledby="tab-findings" tabindex="0" hidden>
+    <h2 id="findings-title">Submit Your Findings</h2>
+    <form id="findings-form">
+      <div class="grid">
+        <div><label for="suspect">Who moved the activity kit?</label><select id="suspect" required></select></div>
+        <div><label for="object">Which item identified them?</label><select id="object" required></select></div>
+        <div><label for="location">Where was the kit moved from?</label><select id="location" required></select></div>
+      </div>
+      <p class="controls"><button class="btn">Check findings</button></p>
+      <p id="findings-feedback" role="status" hidden></p>
+    </form>
+  </section>
+</main>
+</div>
+<footer>Developed by Chongfu School ICT Department 2026</footer>
+<button id="teacher-open" class="teacher-lock" type="button" title="Teacher solution" aria-label="Teacher solution">🔒</button>
+<div class="home-indicator" aria-hidden="true"></div>
+</div>
+<dialog id="teacher-dialog" aria-labelledby="teacher-title">
+  <h2 id="teacher-title">Teacher Solution</h2>
+  <form id="teacher-form">
+    <label for="teacher-code">Teacher access code</label>
+    <input id="teacher-code" type="password" autocomplete="off" required>
+    <p id="teacher-feedback" role="status"></p>
+    <button class="btn">Unlock solution</button>
+  </form>
+  <section id="solution" hidden>
+    <p><strong>Oliver moved the activity kit from the playground. He was holding the paper apple.</strong></p>
+    <p>At 7.12 p.m., Sally had the mask at the dine-in table, Chloe had the pot in the kitchen and Alex had the craft cord by the washroom entrance. That leaves Oliver in the playground with the paper apple. The photo shows that person picking up the kit.</p>
+    <p>Oliver thought the kit had been left behind and took it to the cashier’s counter. Natalie collected it there.</p>
+  </section>
+  <form method="dialog" class="controls"><button class="btn ghost">Close</button></form>
+</dialog>
+<script>
+'use strict';
+
+const people = ['Sally', 'Chloe', 'Alex', 'Oliver'];
+const objects = ['Black costume mask', 'Cooking pot', 'Craft cord', 'Paper apple'];
+const locations = ['Dine-in table', 'Kitchen', 'Playground', 'Washroom entrance'];
+const solution = [
+  ['Black costume mask', 'Dine-in table'],
+  ['Cooking pot', 'Kitchen'],
+  ['Craft cord', 'Washroom entrance'],
+  ['Paper apple', 'Playground']
+];
+const mover = people.indexOf('Oliver');
+
+const byId = id => document.getElementById(id);
+
+const tabs = [...document.querySelectorAll('[role="tab"]')];
+
+function selectTab(activeTab) {
+  for (const tab of tabs) {
+    const selected = tab === activeTab;
+    tab.setAttribute('aria-selected', String(selected));
+    tab.tabIndex = selected ? 0 : -1;
+    byId(tab.getAttribute('aria-controls')).hidden = !selected;
+  }
+  activeTab.focus();
+}
+
+for (const [index, tab] of tabs.entries()) {
+  tab.addEventListener('click', () => selectTab(tab));
+  tab.addEventListener('keydown', event => {
+    const movement = { ArrowLeft: -1, ArrowUp: -1, ArrowRight: 1, ArrowDown: 1 };
+    const offset = movement[event.key];
+    if (offset) {
+      selectTab(tabs[(index + offset + tabs.length) % tabs.length]);
+    } else if (event.key === 'Home' || event.key === 'End') {
+      selectTab(event.key === 'Home' ? tabs[0] : tabs[tabs.length - 1]);
+    } else {
+      return;
+    }
+    event.preventDefault();
+  });
+}
+
+const nameInput = byId('detective-name');
+nameInput.addEventListener('input', () => nameInput.setCustomValidity(''));
+byId('start-form').addEventListener('submit', event => {
+  event.preventDefault();
+  const name = nameInput.value.trim();
+  if (!name) {
+    nameInput.setCustomValidity('Enter a detective or team name.');
+    nameInput.reportValidity();
+    return;
+  }
+  byId('team-display').textContent = 'Playing as ' + name;
+  byId('welcome').hidden = true;
+  byId('case-workspace').hidden = false;
+  selectTab(tabs[0]);
+});
+
+
+function fillSelect(select, choices) {
+  select.add(new Option('Choose…', ''));
+  for (const choice of choices) select.add(new Option(choice, choice));
+}
+
+const grid = people.map(name => {
+  const row = byId('grid-rows').insertRow();
+  const heading = document.createElement('th');
+  heading.scope = 'row';
+  heading.textContent = name;
+  row.append(heading);
+  return [['Object', objects], ['Location', locations]].map(([label, choices]) => {
+    const select = document.createElement('select');
+    select.required = true;
+    select.setAttribute('aria-label', label + ' for ' + name);
+    fillSelect(select, choices);
+    row.insertCell().append(select);
+    return select;
+  });
+});
+
+function feedback(id, correct, message) {
+  const element = byId(id);
+  element.className = 'result ' + (correct ? 'success' : 'fail');
+  element.textContent = message;
+  element.hidden = false;
+}
+
+byId('grid-form').addEventListener('submit', event => {
+  event.preventDefault();
+  const answers = grid.map(row => row.map(select => select.value));
+  const eachUsedOnce = [0, 1].every(column =>
+    new Set(answers.map(row => row[column])).size === people.length
+  );
+  if (!eachUsedOnce) {
+    feedback('grid-feedback', false, 'Use each object and each location exactly once.');
+    return;
+  }
+  const correct = answers.every((row, i) => row.every((answer, j) => answer === solution[i][j]));
+  feedback('grid-feedback', correct, correct ? 'Every match fits the clues.' : 'Compare what each suspect was carrying and where they were at 7.12 p.m.');
+});
+
+fillSelect(byId('suspect'), people);
+fillSelect(byId('object'), objects);
+fillSelect(byId('location'), locations);
+byId('findings-form').addEventListener('submit', event => {
+  event.preventDefault();
+  const correct = byId('suspect').value === people[mover]
+    && byId('object').value === solution[mover][0]
+    && byId('location').value === solution[mover][1];
+  feedback('findings-feedback', correct, correct
+    ? 'Case solved! Oliver moved the kit from the playground. The paper apple identified him.'
+    : 'Compare the playground photo with the clues that place the other suspects.');
+});
+
+byId('teacher-open').addEventListener('click', () => {
+  byId('teacher-form').reset();
+  byId('teacher-form').hidden = false;
+  byId('solution').hidden = true;
+  byId('teacher-feedback').textContent = '';
+  byId('teacher-dialog').showModal();
+});
+
+byId('teacher-form').addEventListener('submit', event => {
+  event.preventDefault();
+  if (byId('teacher-code').value !== 'APPLE26') {
+    byId('teacher-feedback').textContent = 'Incorrect code. Try again.';
+    return;
+  }
+  byId('teacher-form').hidden = true;
+  byId('solution').hidden = false;
+});
+</script>
+</body>
+</html>
